@@ -1,0 +1,16 @@
+networks:
+  app-network:
+    driver: bridge
+
+services:
+
+  events-database:
+    image: postgres:16.2-alpine3.19
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=events
+    networks:
+      - app-network
+    ports:
+      - "12967:5432"

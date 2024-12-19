@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: user
+      changes:
+        - createTable:
+            tableName: parent_table
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: common_column
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 2
+      author: user
+      changes:
+        - createTable:
+            tableName: child_table_1
+            columns:
+              - column:
+                  name: specific_column_1
+                  type: VARCHAR(255)
+            tableOptions: INHERITS (parent_table)
+
+  - changeSet:
+      id: 3
+      author: user
+      changes:
+        - createTable:
+            tableName: child_table_2
+            columns:
+              - column:
+                  name: specific_column_2
+                  type: INTEGER
+            tableOptions: INHERITS (parent_table)
