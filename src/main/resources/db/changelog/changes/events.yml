@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: emma
+      changes:
+        - createTable:
+            tableName: event
+            columns:
+              - column:
+                  name: event_id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: event_name
+                  type: VARCHAR(100)
+
+  - changeSet:
+      id: 2
+      author: emma
+      changes:
+        - sql:
+            sql: |
+              CREATE TABLE admin (
+                admin_id SERIAL PRIMARY KEY,
+                admin_role VARCHAR(50)
+              ) INHERITS (event);
+
+  - changeSet:
+      id: 3
+      author: emma
+      changes:
+        - sql:
+            sql: |
+              CREATE TABLE users (
+                user_id SERIAL PRIMARY KEY,
+                user_email VARCHAR(100)
+              ) INHERITS (event);
